@@ -4,7 +4,7 @@
 
 * To start the dockerized application, clone this repo to your local machine and run the following command in terminal:
 
-`docker-compose up --d` [copy text="Click Me" content="100OFF"]
+[copy content="`docker-compose up --d`"]
 
 **_Make sure that you have docker and docker-compose installed in host machine_**
 
