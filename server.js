@@ -1,9 +1,8 @@
 const path = require('path');
 const http = require('http');
 const express = require('express');
-const bodyParser = require('body-parser')
 const socketio = require('socket.io');
-const formatMessage = require('./utils/messages');
+const displayMsg = require('./utils/messages');
 const {
   userJoin,
   getCurrentUser,
@@ -15,7 +14,6 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
-// Set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
 const botName = 'Chat Bot';
@@ -26,13 +24,13 @@ io.on('connection', socket => {
     const user = userJoin(socket.id, username, room);
     socket.join(user.room);
 
-    // Welcome current user
-    socket.emit('message', formatMessage(botName, 'Welcome to LetsConnect!'));
+    // Welcome new user
+    socket.emit('message', displayMsg(botName, 'Welcome to LetsConnect!'));
 
-    // Broadcast when a user connects
+    // Displayed when a user connects
     socket.broadcast.to(user.room).emit(
         'message',
-        formatMessage(botName, `${user.username} has joined the chat`)
+        displayMsg(botName, `${user.username} has joined the chat`)
       );
 
     // Send users and room info
@@ -42,21 +40,20 @@ io.on('connection', socket => {
     });
   });
 
-  // Listen for chatMessage
   socket.on('chatMessage', msg => {
     const user = getCurrentUser(socket.id);
 
-    io.to(user.room).emit('message', formatMessage(user.username, msg));
+    io.to(user.room).emit('message', displayMsg(user.username, msg));
   });
 
-  // Runs when client disconnects
+  //User disconnects
   socket.on('disconnect', () => {
     const user = userLeave(socket.id);
 
     if (user) {
       io.to(user.room).emit(
         'message',
-        formatMessage(botName, `${user.username} has left the chat`)
+        displayMsg(botName, `${user.username} has left the chat`)
       );
 
       // Send users and room info
