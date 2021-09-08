@@ -1,5 +1,3 @@
-# LetsConnect-chat_app
-
 ## LetsConnect is a realtime chat application with multiple chat rooms and allows users to enter a room of their interest.
 
 * To start the dockerized application, clone this repo to your local machine and run the following command in terminal:
