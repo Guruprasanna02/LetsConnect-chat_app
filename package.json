@@ -7,7 +7,7 @@
     "start": "node server",
     "dev": "nodemon server"
   },
-  "author": "guru",
+  "author": "Guruprasanna",
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
