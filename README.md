@@ -16,4 +16,4 @@
 
 `npm start`
 
-**_Make sure that you have node and npm installed in host machine_**
+**_Make sure that you have node.js and npm installed in host machine_**
