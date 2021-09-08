@@ -9,6 +9,7 @@
 **_Make sure that you have docker and docker-compose installed in host machine_**
 
 
+
 * To start the application on host machine, clone this repo to your local machine and run the following commands in terminal -
 
 `npm install`
