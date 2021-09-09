@@ -1,5 +1,6 @@
 ## LetsConnect is a realtime chat application with multiple chat rooms and allows users to enter a room of their interest.
 
+#### The app can be accessed at localhost:9000
 #### The application can be started in two ways :
 
 * To start the dockerized application, clone this repo to your local machine and run the following command in terminal:
@@ -18,4 +19,3 @@
 
 **_Make sure that you have node.js and npm installed in host machine_**
 
-#### The app can be accessed at localhost:9000
