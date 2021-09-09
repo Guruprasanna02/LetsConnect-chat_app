@@ -118,16 +118,16 @@ a {
 	color: #777;
 }
 
-.chat-form-container {
+.send-msg-container {
 	padding: 20px 30px;
 	background-color: var(--dark-color-a);
 }
 
-.chat-form-container form {
+.send-msg-container form {
 	display: flex;
 }
 
-.chat-form-container input[type='text'] {
+.send-msg-container input[type='text'] {
 	font-size: 16px;
 	padding: 5px;
 	height: 40px;
