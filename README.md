@@ -17,3 +17,5 @@
 `npm start`
 
 **_Make sure that you have node.js and npm installed in host machine_**
+
+#### The app can be accessed at localhost:9000
