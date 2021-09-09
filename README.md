@@ -7,7 +7,7 @@
 
 `docker-compose up --d`
 
-**_Make sure that you have docker and docker-compose installed in host machine_**
+**_Make sure that you have docker and docker-compose installed in host machine for the above method_**
 
 
 
@@ -17,5 +17,5 @@
 
 `npm start`
 
-**_Make sure that you have node.js and npm installed in host machine_**
+**_Make sure that you have node.js and npm installed in host machine for the above method_**
 
