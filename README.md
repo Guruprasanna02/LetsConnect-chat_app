@@ -13,7 +13,7 @@
 
 * To start the application on host machine, clone this repo to your local machine and run the following commands in terminal:
 
-`npm install`
+`npm ci`
 
 `npm start`
 
