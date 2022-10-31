@@ -9,6 +9,14 @@ const { username, room } = Qs.parse(location.search, {
   ignoreQueryPrefix: true,
 });
 
+
+// Message from server
+socket.on('message', (message) => {
+  outputMessage(message);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+
+});
+
 // Join chatroom
 socket.emit('joinRoom', { username, room });
 
@@ -18,11 +26,24 @@ socket.on('roomUsers', ({ room, users }) => {
   outputUsers(users);
 });
 
-// Message from server
-socket.on('message', (message) => {
-  outputMessage(message);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-});
+
+function outputMessage(message) {
+  const div = document.createElement('div');
+  div.classList.add('message');
+  const p = document.createElement('p');
+  p.classList.add('meta');
+  p.innerText = message.username;
+  p.innerHTML += `<span>  ${message.time}</span>`;
+  div.appendChild(p);
+  const para = document.createElement('p');
+  para.classList.add('text');
+  para.innerText = message.text;
+  div.appendChild(para);
+  document.querySelector('.chat-messages').appendChild(div);
+}
+
+
+
 
 // Message submit
 chatSend.addEventListener('submit', (e) => {
@@ -40,25 +61,6 @@ chatSend.addEventListener('submit', (e) => {
 
 });
 
-function outputMessage(message) {
-  const div = document.createElement('div');
-  div.classList.add('message');
-  const p = document.createElement('p');
-  p.classList.add('meta');
-  p.innerText = message.username;
-  p.innerHTML += `<span>  ${message.time}</span>`;
-  div.appendChild(p);
-  const para = document.createElement('p');
-  para.classList.add('text');
-  para.innerText = message.text;
-  div.appendChild(para);
-  document.querySelector('.chat-messages').appendChild(div);
-}
-
-function outputRoomName(room) {
-  roomName.innerText = room;
-}
-
 function outputUsers(users) {
   userList.innerHTML = '';
   users.forEach((user) => {
@@ -66,6 +68,10 @@ function outputUsers(users) {
     li.innerText = user.username;
     userList.appendChild(li);
   });
+}
+
+function outputRoomName(room) {
+  roomName.innerText = room;
 }
 
 //Prompt the user before leave chat room
@@ -76,6 +82,19 @@ document.getElementById('leave-btn').addEventListener('click', () => {
   } else {
   }
 });
+
+document.getElementsByClassName("darkButton")[0].addEventListener('click', () => {
+  if(document.getElementsByClassName("darkButton")[0].innerHTML == "Switch to Dark Mode") {
+    document.getElementsByName("body").classList.remove("white");
+    document.getElementsByName("body").classList.add("dark");
+    document.getElementsByClassName("darkButton")[0].innerHTML = "Switch to Light Mode"
+  } else {
+    document.getElementsByName("body").classList.remove("dark");
+    document.getElementsByName("body").classList.add("white");
+    document.getElementsByClassName("darkButton")[0].innerHTML = "Switch to Dark Mode"
+  }
+})
+
 
 //Prompt the user before reloading chat page
 window.onbeforeunload = function() {
